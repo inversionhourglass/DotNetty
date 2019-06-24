@@ -37,7 +37,8 @@ namespace DotNetty.Common.Tests.Concurrency
                     {
                         Assert.True(executor.InEventLoop);
                         await Task.Delay(1);
-                        Assert.True(executor.InEventLoop);
+                        // after ExecutorTaskScheduler logic change, there should be false
+                        Assert.False(executor.InEventLoop);
                         completion.TryComplete(); // all is well
                     }
                     catch (Exception ex)
